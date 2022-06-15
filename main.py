@@ -1,72 +1,73 @@
 alfabet = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzабвгдеёжзийклмнопрстуфхцчшщъыьэюяабвгдеёжзийклмнопрстуфхцчшщъыьэюя123456789123456789'
 
-def getMessage():
+def get_message():
     return input('Введите сообщение: ').lower()
 
-def chooseFunc(message):
-    print('Если вам нужно зашифровать сообщение, введите 1')
-    print('Если вам нужно разшифровать сообщение, введите 2')
-    print('Если вам нужно взломать сообщение и узнать улюч, введите 3')
+def choose_func(message):
+    print('''
+    Если вам нужно зашифровать сообщение, введите 1
+    Если вам нужно разшифровать сообщение, введите 2
+    Если вам нужно взломать сообщение и узнать улюч, введите 3
+    ''')
     choosed = int(input('Введите выбраное число: '))
     match choosed:
         case 1:
-            encryptMessage(message)
+            encrypt_message(message)
         case 2:
-            unencryptMessage(message)
+            unencrypt_message(message)
         case 3:
-            hackMessage(message)
-    quit()
+            hack_message(message)
 
-def hackMessage(message):
+def hack_message(message):
     key = 1
-    unencryptedMessage = ''
+    unencrypted_message = ''
     choosed = 0
     while True:
         for char in message:
             position = alfabet.rfind(char)
-            newPosition = position - key
+            new_position = position - key
             if char in alfabet:
-                unencryptedMessage += alfabet[newPosition]
+                unencrypted_message += alfabet[new_position]
             else:
-                unencryptedMessage += char
-        print('Расшифровка с ключом ' + str(key) + ': ' + unencryptedMessage)
+                unencrypted_message += char
+        print('Расшифровка с ключом ' + str(key) + ': ' + unencrypted_message)
         print('Если это правильная расшифровка, введите 1. Если нет - 2')
         choosed = int(input('Введите выбраное число: '))
         match choosed:
             case 1:
-                print('Расшифрованый текст: ' + unencryptedMessage)
+                print('Расшифрованый текст: ' + unencrypted_message)
                 break
             case 2:
                 key += 1
-                unencryptedMessage = ''
+                unencrypted_message = ''
                 continue
 
-def getKey():
+def get_key():
     return int(input('Введите ключ: '))
 
-def encryptMessage(message):
-    key = getKey()
-    encryptedMessage = ''
+def encrypt_message(message):
+    key = get_key()
+    encrypted_message = ''
     for char in message:
         position = alfabet.find(char)
-        newPosition = position + key
+        new_position = position + key
         if char in alfabet:
-            encryptedMessage += alfabet[newPosition]
+            encrypted_message += alfabet[new_position]
         else:
-            encryptedMessage = + char
-    print('Зашифрованый текст: ' + encryptedMessage)
+            encrypted_message = + char
+    print('Зашифрованый текст: ' + encrypted_message)
 
-def unencryptMessage(message):
-    key = getKey()
-    unencryptedMessage = ''
+def unencrypt_message(message):
+    key = get_key()
+    unencrypted_message = ''
     for char in message:
         position = alfabet.rfind(char)
-        newPosition = position - key
+        new_position = position - key
         if char in alfabet:
-            unencryptedMessage += alfabet[newPosition]
+            unencrypted_message += alfabet[new_position]
         else:
-            unencryptedMessage += char
-    print('Расшифрованый текст: ' + unencryptedMessage)
+            unencrypted_message += char
+    print('Расшифрованый текст: ' + unencrypted_message)
 
-message = getMessage()
-chooseFunc(message)
+message = get_message()
+choose_func(message)
